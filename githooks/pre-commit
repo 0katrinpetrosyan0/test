@@ -5,9 +5,9 @@ for y in $(find . -print)
     do
         if ! git diff --cached --quiet "${y}" 
         then
-            git secrets --install -f
-            git secrets --register-aws --global
-            git secrets --scan-history
+            sudo git secrets --install -f
+            sudo git secrets --register-aws --global
+            sudo git secrets --scan-history
         fi
 done
 echo "Endcheck for secrets and passwords";

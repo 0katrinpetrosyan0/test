@@ -13,5 +13,4 @@ provider "aws" {
   secret_key = "5kE27OkIST2zd9LKRH+krTFvNRf82obAgJKr1Y+9"
 }
 
-pass = 1234
 

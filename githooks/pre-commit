@@ -6,11 +6,12 @@ for y in $(find . -print)
         if ! git diff --cached --quiet "${y}" 
         then
             sudo git secrets --install -f;
+            sudo git secrets --add '[A-Z0-9]{20}'
             sudo git secrets --register-aws --global;
             sudo git secrets --add-provider
             sudo git secrets --scan -r "${y}";
         fi
 done
-echo "Endcheck for secrets and passwords";
+echo "End check for secrets and passwords";
 
 echo "End git pre-commit hooks";

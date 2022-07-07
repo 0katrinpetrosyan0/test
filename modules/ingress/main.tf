@@ -1,5 +1,5 @@
 locals {
-  group_name = "${var.alb_name}-group"
+  group_name                  = "${var.alb_name}-group"
   default_annotations = {
     "alb.ingress.kubernetes.io/load-balancer-name" = var.alb_name
     "alb.ingress.kubernetes.io/scheme"             = "internet-facing"

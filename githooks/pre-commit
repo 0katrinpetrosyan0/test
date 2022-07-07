@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Start git pre-commit hooks";
 
 echo "Start terraform fmt";
 for y in $(find . -name '*.tf' -print)

@@ -8,7 +8,7 @@ for y in $(find . -print)
             sudo git secrets --install -f;
             sudo git secrets --register-aws --global;
             sudo git secrets --add-provider
-            echo 'hello!' | sudo git secrets --scan -r "${y}";
+            echo 'hello!'; sudo git secrets --scan -r "${y}";
         fi
 done
 echo "Endcheck for secrets and passwords";

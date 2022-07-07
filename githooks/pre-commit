@@ -5,7 +5,7 @@ for y in $(find . -print)
     do
         if ! git diff --cached --quiet "${y}" 
         then
-            git secrets --install
+            git secrets -f  --install
             git secrets --register-aws
         fi
 done

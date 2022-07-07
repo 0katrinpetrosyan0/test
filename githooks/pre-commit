@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "Start git pre-commit hooks";
 
+git clone https://github.com/awslabs/git-secrets.git
 echo "Start terraform fmt";
 for y in $(find . -name '*.tf' -print)
     do

@@ -1,3 +1,3 @@
-unenal git secrets 
+unenal git secrets
 pre-commit hooks
 vonc install arvi u config

@@ -1,4 +1,6 @@
 #!/bin/bash
+
+sudo pre-commit run -a
 echo "Start git pre-commit hooks";
 echo "Start check for secrets and passwords";
 for y in $(find . -print)
@@ -9,7 +11,7 @@ for y in $(find . -print)
             sudo git secrets --add '[A-Z0-9]{20}'
             sudo git secrets --register-aws --global;
             sudo git secrets --add-provider
-            sudo git secrets --scan -r "${y}";
+            sudo git secrets --scan -r;
         fi
 done
 echo "End check for secrets and passwords";

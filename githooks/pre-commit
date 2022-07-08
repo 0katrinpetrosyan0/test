@@ -1,19 +1,4 @@
 #!/bin/bash
-
+echo "Start git pre-commit hooks and checks...";
 sudo pre-commit run -a
-echo "Start git pre-commit hooks";
-echo "Start check for secrets and passwords";
-for y in $(find . -print)
-    do
-        if ! git diff --cached --quiet "${y}" 
-        then
-            sudo git secrets --install -f;
-            sudo git secrets --add '[A-Z0-9]{20}'
-            sudo git secrets --register-aws --global;
-            sudo git secrets --add-provider
-            sudo git secrets --scan -r;
-        fi
-done
-echo "End check for secrets and passwords";
-
-echo "End git pre-commit hooks";
+echo "End git pre-commit hooks and checks...";

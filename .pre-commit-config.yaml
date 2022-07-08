@@ -18,4 +18,7 @@ repos:
     - id: detect-aws-credentials
       args: ['--allow-missing-credentials']
     - id: detect-private-key
+- repo: https://github.com/Yelp/detect-secrets
+  rev: v4.2.0
+  hooks:
     - id: detect-secrets

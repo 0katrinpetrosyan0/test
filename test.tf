@@ -7,6 +7,8 @@ terraform {
   }
 }
 
+pass = "check"
+
 provider "aws" {
   region = "eu-west-1"
   access_key = "AKIAYHLZZFMQEBGYZI7R"

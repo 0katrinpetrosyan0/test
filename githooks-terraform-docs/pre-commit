@@ -8,4 +8,4 @@ for i in `ls -d modules/*/`;do
         terraform-docs markdown table --output-file README.md --output-mode inject "${i}";
     fi
 done
-echo "End terraform docs";
+echo "End terraform  docs";

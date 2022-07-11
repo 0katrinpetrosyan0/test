@@ -1,6 +1,6 @@
 ## What we have.
 
-We run our hooks on every commit to automatically point out issues in code such as terraform fmt, terraform docs, trailing whitespace, detect-aws-credentials, check-merge-conflict, detect-private-key. 
+We run our hooks on every commit to automatically point out issues in code such as terraform fmt, terraform docs, trailing whitespace, detect-aws-credentials, check-merge-conflict, detect-private-key.
 
 ## If you want to use pre-commit githooks you need to have installed pre-commit see here how to install.
 
@@ -48,15 +48,15 @@ pre-commit init-templatedir -t pre-commit ${DIR}
 ```bash
 git config core.hooksPath githooks
 
-OR 
+OR
 
 git config core.hooksPath githooks-detect-secrets
 
-OR 
+OR
 
 git config core.hooksPath githooks-terraform-docs
 
-OR 
+OR
 
 git config core.hooksPath githooks-terraform-fmt
 ```

@@ -112,6 +112,8 @@ func createSecretFolder() {
 	file := os.Chdir("githooks-detect-secrets")
 	fmt.Println(file)
 	createDetectPreCommitFIle()
+	cmd := os.Chmod("pre-commit", 0777)
+	fmt.Println(cmd)
 	file1 := os.Chdir("../")
 	fmt.Println(file1)
 
@@ -124,6 +126,8 @@ func createDocsFolder() {
 	file := os.Chdir("githooks-terraform-docs")
 	fmt.Println(file)
 	createDocsPreCommitFIle()
+	cmd := os.Chmod("pre-commit", 0777)
+	fmt.Println(cmd)
 	file1 := os.Chdir("../")
 	fmt.Println(file1)
 }
@@ -135,6 +139,8 @@ func createFmtFolder() {
 	file := os.Chdir("githooks-terraform-fmt")
 	fmt.Println(file)
 	createFmtPreCommitFIle()
+	cmd := os.Chmod("pre-commit", 0777)
+	fmt.Println(cmd)
 	file1 := os.Chdir("../")
 	fmt.Println(file1)
 }
@@ -190,29 +196,23 @@ func installPreCommit() {
 	}
 }
 
-// func configPreCommitGlobally() {
-// 	app := "git"
+func configPreCommitGlobally() {
+	app := "git"
 
-// 	arg0 := "config"
-// 	arg1 := "core.hooksPath"
-// 	arg2 := "githooks-detect-secrets"
+	arg0 := "config"
+	arg1 := "--get"
+	arg2 := "core.hooksPath"
+	arg3 := "githooks-detect-secrets"
 
-// 	cmd := exec.Command(app, arg0, arg1, arg2)
-// 	stdout, err := cmd.Output()
-
-// 	if err != nil {
-// 		fmt.Println(err.Error())
-// 		return
-// 	}
-
-// 	fmt.Println(string(stdout))
-// }
+	cmd := exec.Command(app, arg0, arg1,arg2,arg3)
+	fmt.Println(cmd)
+}
 
 func main() {
 	createConfigFile()
 	createSecretFolder()
 	createDocsFolder()
 	createFmtFolder()
+	configPreCommitGlobally()
 	installPreCommit()
-	// configPreCommitGlobally()
 }

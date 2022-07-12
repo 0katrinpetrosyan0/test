@@ -9,7 +9,7 @@ resource "aws_sns_topic" "this" {
 resource "aws_sns_topic_subscription" "this" {
   topic_arn = aws_sns_topic.this.arn
   protocol  = "https"
-  endpoint  = var.endpoint
+  endpoint  =   var.endpoint
 }
 
 resource "aws_cloudwatch_event_rule" "this" {

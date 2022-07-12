@@ -190,23 +190,23 @@ func installPreCommit() {
 	}
 }
 
-func configPreCommitGlobally() {
-	app := "git"
+// func configPreCommitGlobally() {
+// 	app := "git"
 
-	arg0 := "config"
-	arg1 := "core.hooksPath"
-	arg2 := "githooks-detect-secrets"
+// 	arg0 := "config"
+// 	arg1 := "core.hooksPath"
+// 	arg2 := "githooks-detect-secrets"
 
-	cmd := exec.Command(app, arg0, arg1, arg2)
-	stdout, err := cmd.Output()
+// 	cmd := exec.Command(app, arg0, arg1, arg2)
+// 	stdout, err := cmd.Output()
 
-	if err != nil {
-		fmt.Println(err.Error())
-		return
-	}
+// 	if err != nil {
+// 		fmt.Println(err.Error())
+// 		return
+// 	}
 
-	fmt.Println(string(stdout))
-}
+// 	fmt.Println(string(stdout))
+// }
 
 func main() {
 	createConfigFile()
@@ -214,5 +214,5 @@ func main() {
 	createDocsFolder()
 	createFmtFolder()
 	installPreCommit()
-	configPreCommitGlobally()
+	// configPreCommitGlobally()
 }

@@ -1,12 +1,11 @@
 #!/bin/bash
-
-echo "Start terraform fmt";
+echo 'Start terraform fmt';
 for y in $(find . -name '*.tf' -print)
     do
-        if ! git diff --cached --quiet "${y}"
-        then
-            echo "Formatting the file: ${y}";
-            terraform fmt -write=true "${y}"
-        fi
+      if ! git diff --cached --quiet '${y}'
+      then
+        echo 'Formatting the file: ${y}';
+        terraform fmt -write=true '${y}'
+      fi
 done
-echo "End terraform fmt";
+echo 'End terraform fmt';

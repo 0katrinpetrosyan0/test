@@ -5,5 +5,5 @@ output "topic_id" {
 
 output "topic_arn" {
   value       = aws_sns_topic.this.arn
-    description    = "The ARN of the SNS platform application."
+    description     = "The ARN of the SNS platform application."
 }

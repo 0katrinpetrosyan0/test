@@ -1,7 +1,7 @@
 resource "aws_sns_topic" "this" {
   name                              = var.name
   display_name                      = "${var.name} cronjob"
-  http_success_feedback_role_arn    = aws_iam_role.logger.arn
+  http_success_feedback_role_arn     = aws_iam_role.logger.arn
   http_failure_feedback_role_arn    = aws_iam_role.logger.arn
   http_success_feedback_sample_rate = var.success_sample_percentage
 }

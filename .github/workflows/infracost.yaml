@@ -5,82 +5,40 @@ jobs:
   infracost:
     name: Infracost
     runs-on: ubuntu-latest
-    
+    env:
+      TF_ROOT: modules/
     steps:
-      - uses: actions/setup-python@v2
-      - uses: jannekem/run-python-script-action@v1
+      - name: Setup Infracost
+        uses: infracost/actions/setup@v2
         with:
-          script: |
-            TF_ROOT=modules/
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
+      
+      - name: Checkout base branch
+        uses: actions/checkout@v2
+        with:
+          ref: '${{ github.event.pull_request.base.ref }}'
 
-            cd $TF_ROOT
-
-            # Find all subfolders that have .tf files, but exclude "modules" folders, can be customized
-            tfprojects=($(find . -type f -name '*.tf' | sed -E 's|/[^/]+$||' | grep -v modules | sort -u))
-
-            plans=()
-            planjsons=()
-            for project in "${tfprojects[@]}"; do
-              # You can remove this if Terraform is already init'd
-              echo "Running terraform init for $project"
-              terraform -chdir=$project init
-
-              # Customize this to how you run Terraform
-              # e.g. if you are using variables you can pass them with -var or -var-file
-              echo "Running terraform plan for $project"
-              terraform -chdir=$project plan -out tfplan.binary
-
-              echo "Running terraform show for $project"
-              terraform -chdir=$project show -json tfplan.binary > $project/plan.json
-
-              plans=(${plans[@]} "$project/tfplan.binary")
-              planjsons=(${planjsons[@]} "$project/plan.json")
-            done
-
-            # Generate Infracost config file
-            echo -e "version: 0.1\n\nprojects:\n" > infracost-generated.yml
-            for planjson in "${planjsons[@]}"; do
-              echo -e "  - path: $planjson" >> infracost-generated.yml
-            done
-
-            # Infracost CLI commands can be run now
-            infracost breakdown --config-file=infracost-generated.yml
-
-            # Cleanup generated files
-            rm infracost-generated.yml
-            rm $plans
-            rm $planjsons
-
-      # - name: Setup Infracost
-      #   uses: infracost/actions/setup@v2
-      #   with:
-      #     api-key: ${{ secrets.INFRACOST_API_KEY }}
-
-      # - name: Checkout base branch
-      #   uses: actions/checkout@v2
-      #   with:
-      #     ref: '${{ github.event.pull_request.base.ref }}'
-
-      # - name: Generate Infracost cost estimate baseline
-      #   run: |
-      #     infracost breakdown --path=${TF_ROOT} \
-      #                         --format=json \
-      #                         --out-file=/tmp/infracost-base.json
-      # - name: Checkout PR branch
-      #   uses: actions/checkout@v2
+      - name: Generate Infracost cost estimate baseline
+        run: |
+          cd modules/*/
+          infracost breakdown --path=${TF_ROOT} \
+                              --format=json \
+                              --out-file=/tmp/infracost-base.json
+      - name: Checkout PR branch
+        uses: actions/checkout@v2
 
  
-      # - name: Generate Infracost diff
-      #   run: |
-      #     infracost diff --path=${TF_ROOT} \
-      #                     --format=json \
-      #                     --compare-to=/tmp/infracost-base.json \
-      #                     --out-file=/tmp/infracost.json
+      - name: Generate Infracost diff
+        run: |
+          infracost diff --path=${TF_ROOT} \
+                          --format=json \
+                          --compare-to=/tmp/infracost-base.json \
+                          --out-file=/tmp/infracost.json
 
-      # - name: Post Infracost comment
-      #   run: |
-      #       INFRACOST_ENABLE_CLOUD​=true infracost comment github --path=/tmp/infracost.json \
-      #                                 --repo=$GITHUB_REPOSITORY \
-      #                                 --github-token=${{github.token}} \
-      #                                 --pull-request=${{github.event.pull_request.number}} \
-      #                                 --behavior=update
+      - name: Post Infracost comment
+        run: |
+            INFRACOST_ENABLE_CLOUD​=true infracost comment github --path=/tmp/infracost.json \
+                                      --repo=$GITHUB_REPOSITORY \
+                                      --github-token=${{github.token}} \
+                                      --pull-request=${{github.event.pull_request.number}} \
+                                      --behavior=update

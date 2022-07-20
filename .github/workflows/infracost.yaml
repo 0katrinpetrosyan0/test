@@ -25,11 +25,12 @@ jobs:
         uses: tj-actions/changed-files@v23.2
 
       - name: List all changed files
-        if: ${{ steps.changed-files.outputs.all_changed_files }}
+        # if: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-            infracost breakdown --path=. \
-                                --format=json \
-                                --out-file=/tmp/infracost-base.json
+            for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+              infracost breakdown --path=${{file}} \
+                                  --format=json \
+                                  --out-file=/tmp/infracost-base.json
 
       - name: Post Infracost comment
         run: |

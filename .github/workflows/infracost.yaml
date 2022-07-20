@@ -29,7 +29,9 @@ jobs:
         # env:
         #   TF_ROOT: modules/
         run: |
-            infracost breakdown --path modules/*/ --format=json --out-file=/tmp/infracost-base.json
+          for i in modules/ ; do
+            infracost breakdown --path ${i} --format=json --out-file=/tmp/infracost-base.json
+          done
 
 
       - name: Post Infracost comment

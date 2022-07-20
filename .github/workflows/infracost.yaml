@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
-          
+
       - name: Setup Infracost
         uses: infracost/actions/setup@v2
         with:
@@ -23,17 +23,10 @@ jobs:
         with:
           ref: '${{ github.event.pull_request.base.ref }}'
 
-      - name: Get specific changed files
-        id: changed-files-specific
-        uses: tj-actions/changed-files@v14.5
-        with:
-          files: |
-            modules*\*
-
       - name: Run step if any of the listed files above change
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          for file in ${{ steps.changed-files-specific.outputs. all_changed_files }}; do
+          for file in modules*\*; do
             infracost breakdown --path=$file \
                                 --format=json \
                                 --out-file=/tmp/infracost-base.json

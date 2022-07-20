@@ -27,9 +27,9 @@ jobs:
           files: modules/**/*.tf
 
       - name: List all changed files
-        # if: ${{ steps.changed-files.outputs.all_changed_files }}
+        if: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-            for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            for file in modules/; do
               infracost breakdown --path=$file \
                                   --format=json \
                                   --out-file=/tmp/infracost-base.json

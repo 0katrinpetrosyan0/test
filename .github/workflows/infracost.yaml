@@ -27,11 +27,9 @@ jobs:
       - name: List all changed files
         if: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          for i in modules/* ;do
             infracost breakdown --path=${i} \
                                 --format=json \
                                 --out-file=/tmp/infracost-base.json
-          done
 
       - name: Post Infracost comment
         run: |

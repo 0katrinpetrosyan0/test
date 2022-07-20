@@ -5,8 +5,8 @@ jobs:
   infracost:
     name: Infracost
     runs-on: ubuntu-latest
-    # env:
-      # TF_ROOT: modules/event bridge
+    env:
+      TF_ROOT: modules/*/
     steps:
       - name: Setup Infracost
         uses: infracost/actions/setup@v2

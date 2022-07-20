@@ -8,7 +8,7 @@ resource "aws_sns_topic" "alerts_notify_email" {
 resource "aws_sns_topic_subscription" "email" {
   count = length(var.sns_subscription.sns_subscription_email_address_list)
 
-  topic_arn = aws_sns_topic.alerts_notify_email[0].arn
-  protocol  = "email"
-  endpoint  = element(var.sns_subscription.sns_subscription_email_address_list, count.index)
+  topic_arn       = aws_sns_topic.alerts_notify_email[0].arn
+  protocol        = "email"
+  endpoint        = element(var.sns_subscription.sns_subscription_email_address_list, count.index)
 }

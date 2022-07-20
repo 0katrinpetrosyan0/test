@@ -8,7 +8,7 @@ jobs:
     # env:
       # TF_ROOT: modules/sns-cronjob
     steps:
-       - name: Setup Infracost
+      - name: Setup Infracost
         uses: infracost/actions/setup@v2
         with:
           api-key: ${{ secrets.INFRACOST_API_KEY }}
@@ -29,7 +29,7 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           for file in ${{ steps.changed-files-specific.outputs. all_changed_files }}; do
-            infracost breakdown --path=${TF_ROOT} \
+            infracost breakdown --path=$file \
                                 --format=json \
                                 --out-file=/tmp/infracost-base.json
           done

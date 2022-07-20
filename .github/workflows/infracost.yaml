@@ -11,7 +11,7 @@ jobs:
       - uses: jannekem/run-python-script-action@v1
         with:
           script: |
-            TF_ROOT=path/to/code
+            TF_ROOT=modules/
 
             cd $TF_ROOT
 

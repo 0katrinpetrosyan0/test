@@ -27,7 +27,7 @@ jobs:
       - name: List all changed files
         # if: ${{ steps.changed-files.outputs.all_changed_files }}
         env:
-          TF_ROOT: modules/*/
+          TF_ROOT: modules/
         run: |
             for path in ${TF_ROOT};do
               infracost breakdown --path=${path} \

@@ -5,7 +5,7 @@ variable "comparison_operator" {
 
 variable "threshold" {
   type    = string
-  default = "200"
+  default  = "200"
 }
 
 variable "threshold_type" {

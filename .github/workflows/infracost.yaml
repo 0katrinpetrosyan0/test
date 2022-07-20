@@ -1,15 +1,18 @@
 on: [pull_request]
+# env:
+#     SSH_AUTH_SOCK: /tmp/ssh_agent.sock
 jobs:
   infracost:
     name: Infracost
     runs-on: ubuntu-latest
-
+    # env:
+      # TF_ROOT: modules/sns-cronjob
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v2
         with:
-          fetch-depth: 100
-
+          fetch-depth: 2
+          
       - name: Setup Infracost
         uses: infracost/actions/setup@v2
         with:

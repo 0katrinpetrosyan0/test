@@ -8,6 +8,11 @@ jobs:
     # env:
       # TF_ROOT: modules/sns-cronjob
     steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+          
       - name: Setup Infracost
         uses: infracost/actions/setup@v2
         with:
@@ -39,8 +44,6 @@ jobs:
       #     infracost breakdown --path=${TF_ROOT} \
       #                         --format=json \
       #                         --out-file=/tmp/infracost-base.json
-      - name: Checkout PR branch
-        uses: actions/checkout@v2
 
       # - name: Generate Infracost diff
       #   run: |

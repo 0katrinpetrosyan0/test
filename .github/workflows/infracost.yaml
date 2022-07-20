@@ -27,7 +27,7 @@ jobs:
       - name: List all changed files
         if: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-            infracost breakdown --path=${i} \
+            infracost breakdown --path=. \
                                 --format=json \
                                 --out-file=/tmp/infracost-base.json
 

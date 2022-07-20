@@ -7,7 +7,7 @@ locals {
 }
 
 resource "aws_cloudwatch_metric_alarm" "billing" {
-  count               = length(var.alarm_name)
+  count = length(var.alarm_name)
 
   alarm_name          = var.alarm_name
   comparison_operator = var.comparison_operator_billing

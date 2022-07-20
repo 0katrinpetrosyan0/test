@@ -1,12 +1,12 @@
 on: [pull_request]
-env:
-    SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+# env:
+#     SSH_AUTH_SOCK: /tmp/ssh_agent.sock
 jobs:
   infracost:
     name: Infracost
     runs-on: ubuntu-latest
     env:
-      TF_ROOT: momodules/
+      TF_ROOT: modules/
     steps:
       - name: Setup Infracost
         uses: infracost/actions/setup@v2

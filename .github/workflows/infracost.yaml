@@ -28,7 +28,7 @@ jobs:
         # if: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-              infracost breakdown --path=${{file}} \
+              infracost breakdown --path=$file \
                                   --format=json \
                                   --out-file=/tmp/infracost-base.json
 

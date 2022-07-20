@@ -22,9 +22,12 @@ jobs:
       - name: Infracost breakdown
         run: |
           for i in modules/*/ ;do
-            infracost breakdown --path=${i} \
-                                --format=json \
-                                --out-file=/tmp/infracost-base.json
+            if ! git diff --cached --quiet "${i}" 
+            then
+              infracost breakdown --path=${i} \
+                                  --format=json \
+                                  --out-file=/tmp/infracost-base.json
+            fi
           done
 
       - name: Post Infracost comment

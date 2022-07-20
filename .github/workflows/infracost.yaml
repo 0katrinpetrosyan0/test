@@ -23,11 +23,9 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v23.2
-        with:
-          dir_names: "true"
 
       - name: List all changed files
-        if: contains(steps.changed-files.outputs.all_changed_files, '*.tf')
+        if: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
             for file in modules/; do
               infracost breakdown --path=${file} \

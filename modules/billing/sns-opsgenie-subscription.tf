@@ -8,7 +8,7 @@ resource "aws_sns_topic" "alerts_notify_opsgenie" {
 resource "aws_sns_topic_subscription" "opsgenie" {
   count = length(var.sns_subscription.opsgenie_endpoint)
 
-  topic_arn = aws_sns_topic.alerts_notify_opsgenie[0].arn
+  topic_arn     = aws_sns_topic.alerts_notify_opsgenie[0].arn
   protocol  = "https"
-  endpoint  = element(var.sns_subscription.opsgenie_endpoint, count.index)
+  endpoint   = element(var.sns_subscription.opsgenie_endpoint, count.index)
 }

@@ -27,7 +27,6 @@ jobs:
                                 --out-file=/tmp/infracost-base.json
           done
 
-      - name: Generate Infraco
       - name: Post Infracost comment
         run: |
             infracost comment github  --path=/tmp/infracost-base.json \

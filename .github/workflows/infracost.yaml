@@ -23,7 +23,7 @@ jobs:
       - name: Infracost Breakdown
         run: |
           for i in modules/*/ ; do
-            infracost breakdown --path ${i} --format=json --out-file=/tmp/infracost-base.json
+            infracost breakdown --path ${i} --format=json --out-file=${i}.json
           done
 
 

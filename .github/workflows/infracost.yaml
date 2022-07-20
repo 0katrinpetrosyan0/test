@@ -23,6 +23,8 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v23.2
+        with:
+          files: modules/**/*.tf
 
       - name: List all changed files
         # if: ${{ steps.changed-files.outputs.all_changed_files }}

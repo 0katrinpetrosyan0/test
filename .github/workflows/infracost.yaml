@@ -6,7 +6,7 @@ jobs:
     name: Infracost
     runs-on: ubuntu-latest
     env:
-      TF_ROOT: modules/eventbridge
+      TF_ROOT: modules/sns-cronjob
     steps:
       - name: Setup Infracost
         uses: infracost/actions/setup@v2

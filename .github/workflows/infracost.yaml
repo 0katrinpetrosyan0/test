@@ -20,17 +20,19 @@ jobs:
           ref: '${{ github.event.pull_request.base.ref }}'
           fetch-depth: 0
 
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v23.2
+      # - name: Get changed files
+      #   id: changed-files
+      #   uses: tj-actions/changed-files@v23.2
 
       - name: List all changed files
-        if: ${{ steps.changed-files.outputs.all_changed_files }}
+        # if: ${{ steps.changed-files.outputs.all_changed_files }}
+        env:
+          TF_ROOT: modules/*/
         run: |
-            for file in modules/; do
-              infracost breakdown --path=${file} \
+              infracost breakdown --path=${TF_ROOT} \
                                   --format=json \
                                   --out-file=/tmp/infracost-base.json
+
 
       - name: Post Infracost comment
         run: |

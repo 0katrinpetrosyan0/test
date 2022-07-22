@@ -26,7 +26,6 @@ jobs:
             infracost breakdown --path ${i} --format=json --out-file=${i}.json
           done
 
-
       - name: Post Infracost comment
         run: |
           for i in modules/*/ ; do

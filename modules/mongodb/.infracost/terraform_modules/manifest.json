@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"mongodb","Source":"registry.terraform.io/terraform-module/release/helm","Version":"2.7.0","Dir":".infracost/terraform_modules/mongodb"}]}

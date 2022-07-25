@@ -22,7 +22,12 @@
     "semantic-release": "^19.0.3"
   },
   "release": {
-    "branches": ["main"]
+    "branches": [
+      "main",
+      "master",
+      "test",
+      "check"
+    ]
   },
   "plugins": [
     "@semantic-release/commit-analyzer",

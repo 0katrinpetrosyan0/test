@@ -1,0 +1,40 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "check",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0katrinpetrosyan0/test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0katrinpetrosyan0/test/issues"
+  },
+  "homepage": "https://github.com/0katrinpetrosyan0/test#readme",
+  "devDependencies": {
+    "@semantic-release/github": "^8.0.5",
+    "git-cz": "^4.9.0",
+    "semantic-release": "^19.0.3"
+  },
+  "release": {
+    "branches": ["main"]
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/github",
+    "@semantic-release/npm", {
+      "npmPublish": false
+    }
+  ],
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  }
+}

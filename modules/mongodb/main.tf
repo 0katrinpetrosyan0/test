@@ -1,6 +1,6 @@
 module "mongodb" {
-  source  = "terraform-module/release/helm"
-  version = "2.7.0"
+  source   = "terraform-module/release/helm"
+  version  = "2.7.0"
 
   namespace  = "default"
   repository = "https://charts.bitnami.com/bitnami"

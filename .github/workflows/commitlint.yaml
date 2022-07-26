@@ -1,21 +1,37 @@
 name: Lint Commit Messages
 on: [pull_request, push]
 
+# jobs:
+#   commitlint:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
+#       - uses: wagoid/commitlint-github-action@v4
+
+#   changelog:
+#     needs: [commitlint]
+#     runs-on: ubuntu-20.04
+#     steps:
+#       - name: "✏️ Generate release changelog"
+#         uses: heinrichreimer/github-changelog-generator-action@v2.3
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }} 
+#           output: Changlog.md
+
 jobs:
-  commitlint:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
         with:
-          fetch-depth: 0
-      - uses: wagoid/commitlint-github-action@v4
-
-  changelog:
-    needs: [commitlint]
-    runs-on: ubuntu-20.04
-    steps:
-      - name: "✏️ Generate release changelog"
-        uses: heinrichreimer/github-changelog-generator-action@v2.3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }} 
-          output: Changlog.md
+          node-version: 12
+      - name: Install dependencies
+        run: npm install
+      - name: Semantic release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npx semantic-release

@@ -1,6 +1,11 @@
 {
   "name": "test",
-  "description": "check",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/0katrinpetrosyan0/test.git"
@@ -17,25 +22,19 @@
     "semantic-release": "^19.0.3"
   },
   "release": {
-    "branches": [
-      "main",
-      "master",
-      "test",
-      "check"
-    ]
+    "branches": ["main", "master","next"]
   },
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     "@semantic-release/github",
-    ["@semantic-release/npm", {
-      "npmPublish": false,
-      "tarballDir": "dist"
-    }]
+    "@semantic-release/npm", {
+      "npmPublish": false
+    }
   ],
   "config": {
     "commitizen": {
-      "path": "git-cz"
+      "path": ["/usr/local/lib/node_modules/commitizen/dist/commitizen/adapter.js","/usr/local/lib/node_modules/commitizen/dist/commitizen.js","/usr/local/lib/node_modules/commitizen/dist/cli/git-cz.js","/usr/local/lib/node_modules/commitizen/bin/git-cz.js","/usr/local/lib/node_modules/commitizen/bin/git-cz"]
     }
   }
 }

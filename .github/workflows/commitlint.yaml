@@ -1,18 +1,3 @@
-# name: Changelog
-# on:
-#   release:
-#     types:
-#       - created
-# jobs:
-#   changelog:
-#     runs-on: ubuntu-20.04
-#     steps:
-#       - name: "✏️ Generate release changelog"
-#         uses: heinrichreimer/github-changelog-generator-action@v2.3
-#         with:
-#           token: ${{ secrets.GITHUB_TOKEN }} 
-#           output: Changlog.md
-
 name: Lint Commit Messages
 on: [pull_request, push]
 
@@ -24,3 +9,13 @@ jobs:
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v4
+
+  changelog:
+    needs: [commitlint]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: "✏️ Generate release changelog"
+        uses: heinrichreimer/github-changelog-generator-action@v2.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} 
+          output: Changlog.md

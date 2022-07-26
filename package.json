@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -17,24 +18,11 @@
   },
   "homepage": "https://github.com/0katrinpetrosyan0/test#readme",
   "devDependencies": {
-    "@semantic-release/github": "^8.0.5",
-    "git-cz": "^4.9.0",
-    "semantic-release": "^19.0.3"
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "husky": "^8.0.1"
   },
-  "release": {
-    "branches": ["main", "master","next"]
-  },
-  "plugins": [
-    "@semantic-release/commit-analyzer",
-    "@semantic-release/release-notes-generator",
-    "@semantic-release/github",
-    "@semantic-release/npm", {
-      "npmPublish": false
-    }
-  ],
-  "config": {
-    "commitizen": {
-      "path": ["/usr/local/lib/node_modules/commitizen/dist/commitizen/adapter.js","/usr/local/lib/node_modules/commitizen/dist/commitizen.js","/usr/local/lib/node_modules/commitizen/dist/cli/git-cz.js","/usr/local/lib/node_modules/commitizen/bin/git-cz.js","/usr/local/lib/node_modules/commitizen/bin/git-cz"]
-    }
+  "script": {
+    "prepare": "husky install"
   }
 }

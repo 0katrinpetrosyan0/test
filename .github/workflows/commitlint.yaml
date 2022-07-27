@@ -29,12 +29,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-      - name: Install dependencies
-        run: npm install
-      - name: Semantic release
+      # - name: Install dependencies
+      #   run: npm install
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v3
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
 
         # 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
